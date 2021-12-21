@@ -1,0 +1,6 @@
+229E / CoviShield / Covaxin / SputnikV / Janssen
+B1351 / CoviShield / Covaxin / Convidecia / Moderna
+P1 / AstraZeneca / Janssen/ SputnikLight / CoronaVac
+B117 / J&J / Convidecia / Sinopharm / Pfizer
+B1617 / CoronaVac / J&J / AstraZeneca / Pfizer
+L452R / Sinopharm / SputnikLight / SputnikV / Moderna

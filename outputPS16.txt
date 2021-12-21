@@ -1,0 +1,24 @@
+--------Function displayAll--------
+Total no. of strains: 6
+Total no. of vaccines: 13
+List of strains: 
+229E  
+B1351  
+P1  
+B117  
+B1617  
+L452R  
+List of Vaccines: 
+CoviShield 
+Covaxin 
+SputnikV 
+Janssen 
+Convidecia 
+Moderna 
+AstraZeneca 
+SputnikLight 
+CoronaVac 
+J&J 
+Sinopharm 
+Pfizer 
+CoronaVac 
