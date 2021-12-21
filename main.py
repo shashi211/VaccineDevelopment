@@ -84,6 +84,30 @@ class IMMUNIZATION:
 
         # Use BFS to check path between s and d
 
+    def isReachable(self, s, d):
+        # Mark all the vertices as not visited
+        visited = [False] * (self.nodes)
+        # Create a queue for BFS
+        queue = []
+        # Mark the source node as visited and enqueue it
+        queue.append(s)
+        visited[s] = True
+        while queue:
+            # Dequeue a vertex from queue
+            n = queue.pop(0)
+            # If this adjacent node is the destination node,
+            # then return true
+            if n == d:
+                return True
+        #  Else, continue to do BFS
+        for i in self.adj_list[n]:
+            if visited[i] == False:
+                queue.append(i)
+                visited[i] = True
+        # If BFS is complete without visited d
+        return False
+
+
     def BFS_SP(self, start, goal):
         explored = []
 
@@ -128,7 +152,6 @@ class IMMUNIZATION:
               "path doesn't exist :(")
         return
 
-
 vaccineList = []  # list containing vaccine and strains
 edges = []  # matrix of edges/associations
 graph = IMMUNIZATION(vaccineList, edges)
@@ -139,4 +162,4 @@ graph.graph()
 graph.print_adj()
 graph.displayStrains("CoviShield")
 graph.displayVaccine("229E")
-graph.BFS_SP("Covaxin","CoviShield")
+graph.isReachable("Covaxin","CoviShield")
