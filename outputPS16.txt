@@ -22,3 +22,27 @@ J&J
 Sinopharm 
 Pfizer 
 CoronaVac 
+
+--------Function displayStrain --------
+Vaccine name: CoviShield
+List of Strains: 
+229E 
+B1351 
+
+--------Function displayVaccine --------
+Strain name: P1
+List of Vaccine: 
+AstraZeneca 
+Janssen 
+SputnikLight 
+CoronaVac 
+
+--------Function Common Strain --------
+Vaccine A Pfizer
+Vaccine A Moderna
+No Common Strain Found 
+
+--------Function Common Strain --------
+Vaccine A Moderna
+Vaccine A J&J
+Related: Yes, Moderna > B1351 > Convidecia > B117 > J&J

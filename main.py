@@ -53,6 +53,7 @@ class IMMUNIZATION:
         for vac in uniqueVaccines:
             file.writelines(vac.strip()+ " \n")
         file.writelines("\n")
+        file.close()
 
     # adding  nodes to the adjacency_list
     def add_node(self):
@@ -76,36 +77,52 @@ class IMMUNIZATION:
             print(node, ":", self.adj_list[node])
 
     # function to display strain for a vaccine
-    def displayStrains(self, vaccine):
-        try:
-            list = self.adj_list[vaccine]
-        except:
-            list=[]
-        file = open("outputPS16.txt", "a")
-        file.writelines("--------Function displayStrain --------\n")
-        file.writelines("Vaccine name: "+ vaccine +"\n")
-        file.writelines("List of Strains: \n")
-        if len(list) ==0:
-            file.writelines("No Strain Found\n")
-        for strain in list:
-            file.writelines(strain +" \n")
-        file.writelines("\n")
+    def displayStrains(self):
+        newlist=[]
+        file1 = open("promptsPS16.txt","r")
+        for line in file1:
+            newlist.append(line.strip().split(':'))
+        for x in newlist:
+            if x[0]=="displayStrains":
+                try:
+                    list = self.adj_list[x[1].strip()]
+                except:
+                    list = []
+                file = open("outputPS16.txt", "a")
+                file.writelines("--------Function displayStrain --------\n")
+                file.writelines("Vaccine name: " + x[1].strip() + "\n")
+                file.writelines("List of Strains: \n")
+                if len(list) == 0:
+                    file.writelines("No Strain Found\n")
+                for strain in list:
+                    file.writelines(strain + " \n")
+                file.writelines("\n")
+                file.close()
+        file1.close()
 
     # function to display vaccines for a strain
-    def displayVaccine(self, strain):
-        file = open("outputPS16.txt","a")
-        try:
-            list = self.adj_list[strain]
-        except:
-            list=[]
-        file.writelines("--------Function displayVaccine --------\n")
-        file.writelines("Strain name: " + strain + "\n")
-        file.writelines("List of Vaccine: \n")
-        if len(list) == 0:
-            file.writelines("No Vaccine Found \n")
-        for strain in list:
-            file.writelines(strain + " \n")
-        file.writelines("\n")
+    def displayVaccine(self):
+        newlist = []
+        file1 = open("promptsPS16.txt", "r")
+        for line in file1:
+            newlist.append(line.strip().split(':'))
+        for x in newlist:
+            if x[0]=="listVaccine":
+                file = open("outputPS16.txt", "a")
+                try:
+                    list = self.adj_list[x[1].strip()]
+                except:
+                    list = []
+                file.writelines("--------Function displayVaccine --------\n")
+                file.writelines("Strain name: " + x[1].strip() + "\n")
+                file.writelines("List of Vaccine: \n")
+                if len(list) == 0:
+                    file.writelines("No Vaccine Found \n")
+                for strain in list:
+                    file.writelines(strain + " \n")
+                file.writelines("\n")
+                file.close()
+        file1.close()
 
     # bfs with shortest path
     def bfs_sp(self, start, goal):
@@ -134,51 +151,71 @@ class IMMUNIZATION:
                     # Condition to check if the
                     # neighbour node is the goal
                     if neighbour == goal:
-                        print("Shortest path = ", *new_path)
                         return new_path
                 explored.append(node)
         return
 
     # function to fina a common strain
-    def commonStrain(self,vacA,vacB):
-        file = open("outputPS16.txt", "a")
-        try:
-            list = self.bfs_sp(vacA, vacB)
-        except:
-            list = []
-        file.writelines("--------Function Common Strain --------\n")
-        file.writelines("Vaccine A " + vacA + "\n")
-        file.writelines("Vaccine A " + vacB + "\n")
-        if not list:
-            file.writelines("No Common Strain Found \n")
-            file.writelines("\n")
-            return
-        if len(list)>2:
-            file.writelines("No Common Strain Found \n")
-            file.writelines("\n")
-            return
-        file.writelines("common strain: Yes " + list[1] +" \n")
-        file.writelines("\n")
+    def commonStrain(self):
+        newlist = []
+        file1 = open("promptsPS16.txt", "r")
+        for line in file1:
+            newlist.append(line.strip().split(':'))
+        for x in newlist:
+            if x[0] == "commonStrain":
+                vacA = x[1].strip()
+                vacB = x[2].strip()
+                file = open("outputPS16.txt", "a")
+                try:
+                    list = self.bfs_sp(vacA, vacB)
+                except:
+                    list = []
+                file.writelines("--------Function Common Strain --------\n")
+                file.writelines("Vaccine A " + vacA + "\n")
+                file.writelines("Vaccine A " + vacB + "\n")
+                if not list:
+                    file.writelines("No Common Strain Found \n")
+                    file.writelines("\n")
+                    return
+                if len(list) > 2:
+                    file.writelines("No Common Strain Found \n")
+                    file.writelines("\n")
+                    return
+                file.writelines("common strain: Yes " + list[1] + " \n")
+                file.writelines("\n")
+                file.close()
+        file1.close()
+
 
     #function find vaccine via connecting a vaccine
-    def findVaccineConnect(self,vacA,vacB):
-        file = open("outputPS16.txt", "a")
-        try:
-            list = self.bfs_sp(vacA, vacB)
-        except:
-            list = []
-        file.writelines("--------Function Common Strain --------\n")
-        file.writelines("Vaccine A " + vacA + "\n")
-        file.writelines("Vaccine A " + vacB + "\n")
-        if not list:
-            file.writelines("Not Related\n")
-            file.writelines("\n")
-            return
-        file.writelines("Related: Yes, " )
-        for x in range(len(list)-1):
-            file.write(list[x] +" > ")
-        file.write(list[-1])
-        file.writelines("\n")
+    def findVaccineConnect(self):
+        newlist = []
+        file1 = open("promptsPS16.txt", "r")
+        for line in file1:
+            newlist.append(line.strip().split(':'))
+        for x in newlist:
+            if x[0] == "indVaccineConnect":
+                vacA = x[1].strip()
+                vacB = x[2].strip()
+                file = open("outputPS16.txt", "a")
+                try:
+                    list = self.bfs_sp(vacA, vacB)
+                except:
+                    list = []
+                file.writelines("--------Function Common Strain --------\n")
+                file.writelines("Vaccine A " + vacA + "\n")
+                file.writelines("Vaccine A " + vacB + "\n")
+                if not list:
+                    file.writelines("Not Related\n")
+                    file.writelines("\n")
+                    return
+                file.writelines("Related: Yes, ")
+                for x in range(len(list) - 1):
+                    file.write(list[x] + " > ")
+                file.write(list[-1])
+                file.writelines("\n")
+                file.close()
+        file1.close()
 
 
 
@@ -189,7 +226,7 @@ immunization = IMMUNIZATION(vaccineList, edges)
 immunization.readInputfile("inputPS16.txt")
 immunization.displayAll()
 immunization.graph()
-immunization.displayStrains("CoviShied")
-immunization.displayVaccine("229")
-immunization.bfs("Covaxin")
-immunization.findVaccineConnect("AstraZeneca","Moderna")
+immunization.displayStrains()
+immunization.displayVaccine()
+immunization.commonStrain()
+immunization.findVaccineConnect()
