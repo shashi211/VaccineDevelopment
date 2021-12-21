@@ -107,21 +107,6 @@ class IMMUNIZATION:
             file.writelines(strain + " \n")
         file.writelines("\n")
 
-    #bfs algorithm
-    def bfs(self,root):
-        visited, queue = set(), collections.deque([root])
-        visited.add(root)
-        while queue:
-            # Dequeue a vertex from queue
-            vertex = queue.popleft()
-            print(str(vertex) + " ", end="")
-            # If not visited, mark it as visited, and
-            # enqueue it
-            for neighbour in self.adj_list[vertex]:
-                if neighbour not in visited:
-                    visited.add(neighbour)
-                    queue.append(neighbour)
-
     # bfs with shortest path
     def bfs_sp(self, start, goal):
         explored = []
@@ -149,10 +134,54 @@ class IMMUNIZATION:
                     # Condition to check if the
                     # neighbour node is the goal
                     if neighbour == goal:
-                        ("Shortest path = ", *new_path)
-                        return
+                        print("Shortest path = ", *new_path)
+                        return new_path
                 explored.append(node)
         return
+
+    # function to fina a common strain
+    def commonStrain(self,vacA,vacB):
+        file = open("outputPS16.txt", "a")
+        try:
+            list = self.bfs_sp(vacA, vacB)
+        except:
+            list = []
+        file.writelines("--------Function Common Strain --------\n")
+        file.writelines("Vaccine A " + vacA + "\n")
+        file.writelines("Vaccine A " + vacB + "\n")
+        if not list:
+            file.writelines("No Common Strain Found \n")
+            file.writelines("\n")
+            return
+        if len(list)>2:
+            file.writelines("No Common Strain Found \n")
+            file.writelines("\n")
+            return
+        file.writelines("common strain: Yes " + list[1] +" \n")
+        file.writelines("\n")
+
+    #function find vaccine via connecting a vaccine
+    def findVaccineConnect(self,vacA,vacB):
+        file = open("outputPS16.txt", "a")
+        try:
+            list = self.bfs_sp(vacA, vacB)
+        except:
+            list = []
+        file.writelines("--------Function Common Strain --------\n")
+        file.writelines("Vaccine A " + vacA + "\n")
+        file.writelines("Vaccine A " + vacB + "\n")
+        if not list:
+            file.writelines("Not Related\n")
+            file.writelines("\n")
+            return
+        file.writelines("Related: Yes, " )
+        for x in range(len(list)-1):
+            file.write(list[x] +" > ")
+        file.write(list[-1])
+        file.writelines("\n")
+
+
+
 
 vaccineList = []  # list containing vaccine and strains
 edges = []  # matrix of edges/associations
@@ -161,6 +190,6 @@ immunization.readInputfile("inputPS16.txt")
 immunization.displayAll()
 immunization.graph()
 immunization.displayStrains("CoviShied")
-immunization.displayVaccine("229E")
-immunization.bfs_sp("Covaxin","CoviShild")
+immunization.displayVaccine("229")
 immunization.bfs("Covaxin")
+immunization.findVaccineConnect("AstraZeneca","Moderna")
