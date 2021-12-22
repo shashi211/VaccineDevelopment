@@ -209,7 +209,7 @@ class IMMUNIZATION:
                 if not list:
                     file.writelines("Not Related\n")
                     file.writelines("\n")
-                    return
+                    continue
                 file.writelines("Related: Yes, ")
                 for x in range(len(list) - 1):
                     file.write(list[x] + " > ")
