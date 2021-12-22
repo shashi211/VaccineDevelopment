@@ -177,11 +177,11 @@ class IMMUNIZATION:
                 if not list:
                     file.writelines("No Common Strain Found \n")
                     file.writelines("\n")
-                    return
-                if len(list) > 2:
+                    continue
+                if len(list) > 3:
                     file.writelines("No Common Strain Found \n")
                     file.writelines("\n")
-                    return
+                    continue
                 file.writelines("common strain: Yes " + list[1] + " \n")
                 file.writelines("\n")
                 file.close()
@@ -203,7 +203,7 @@ class IMMUNIZATION:
                     list = self.bfs_sp(vacA, vacB)
                 except:
                     list = []
-                file.writelines("--------Function Common Strain --------\n")
+                file.writelines("--------Function findVaccineConnect --------\n")
                 file.writelines("Vaccine A " + vacA + "\n")
                 file.writelines("Vaccine A " + vacB + "\n")
                 if not list:

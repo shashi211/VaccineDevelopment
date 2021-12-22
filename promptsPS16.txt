@@ -1,4 +1,6 @@
 displayStrains: CoviShield
+displayStrains: Covaxin
 listVaccine: P1
-commonStrain: Pfizer : Moderna
 indVaccineConnect: Moderna : J&J
+commonStrain: CoviShield: Moderna
+commonStrain: CoviShield: Convidecia
