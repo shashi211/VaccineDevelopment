@@ -26,6 +26,7 @@ class IMMUNIZATION:
                     continue
                 else:
                     self.nodes.append(vaccine[x].strip())
+        self.graph()
 
     def displayAll(self):
         # opening output file in write mode
@@ -225,7 +226,6 @@ edges = []  # matrix of edges/associations
 immunization = IMMUNIZATION(vaccineList, edges)
 immunization.readInputfile("inputPS16.txt")
 immunization.displayAll()
-immunization.graph()
 immunization.displayStrains()
 immunization.displayVaccine()
 immunization.commonStrain()
